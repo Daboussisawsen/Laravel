@@ -1,17 +1,15 @@
-language: php
+dist: trusty
 
-sudo: false
+addons:
+  sonarcloud:
+    organization: "daboussisawsen"
+    token:
+      secure: "c942a44c35a7105197cba0baf3dce293e099d279" # encrypted value of your token
 
-php:
-  - 5.6
-  - 7.0
+install: composer install --prefer-dist
 
-before_script:
-  - composer install --prefer-source
-
-script: ./vendor/bin/phpunit --colors tests
-
-cache:
-    directories:
-        - vendor
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - vendor/bin/phpunit  --coverage-clover=coverage-report.clover --log-junit=test-report.xml
+  - sonar-scanner
 
