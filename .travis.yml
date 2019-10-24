@@ -1,11 +1,9 @@
 dist: trusty
-
 addons:
   sonarcloud:
     organization: "daboussisawsen"
     token:
       secure: "4fbd87ebbf0c1cf3edb9f4d28b38d833e240bdbe" # encrypted value of your token
-
 install: composer install --prefer-dist
 
 script:
